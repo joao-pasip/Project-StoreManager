@@ -9,7 +9,6 @@ const getAllSaleModel = async () => {
 const createSaleModel = async () => {
   const query = 'INSERT INTO StoreManager.sales (date) VALUES (NOW())';
   const [result] = await connection.execute(query);
-  console.log(result.insertId);
   return result.insertId;
 };
 
