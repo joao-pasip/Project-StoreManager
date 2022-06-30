@@ -7,7 +7,7 @@ const getAllSaleModel = async () => {
 };
 
 const createSaleModel = async () => {
-  const query = 'INSERT INTO StoreManager.sales (date) VALUES (CURRENT_TIMESTAMP())';
+  const query = 'INSERT INTO StoreManager.sales (date) VALUES (NOW())';
   const [result] = await connection.execute(query);
   return result.insertId;
 };
