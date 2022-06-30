@@ -1,7 +1,7 @@
 require("dotenv").config();
 const frisby = require("frisby");
 const { runSeed, connect } = require('./_utils');
-const { 
+const {
   wrongSaleNotProductIdBody,
   wrongSaleNotQuantityBody,
   nonexistentProductIdBody,
