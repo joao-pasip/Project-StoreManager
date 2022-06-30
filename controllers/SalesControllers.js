@@ -11,7 +11,7 @@ const getAllSaleControllers = async (req, res) => {
 
 const createSaleController = async (req, res) => {
   try {
-    const { body: array } = req;
+    const array = req.body;
     const sales = await Sale.createSalesServices(array);
     return res.status(201).json(sales);
   } catch (error) {

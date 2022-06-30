@@ -7,11 +7,13 @@ const getAllSalesServices = async () => {
 };
 
 const createSalesServices = async (array) => {
+  await SaleProduct.verifyIfProductsExist(array);
   const saleId = await Sale.createSaleModel();
   const newObj = {
     id: saleId,
     itemsSold: array,
   };
+  console.log(newObj);
   await SaleProduct.createSaleProductModel(newObj);
   return newObj;
 };
