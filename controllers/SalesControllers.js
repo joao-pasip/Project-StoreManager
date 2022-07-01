@@ -32,6 +32,19 @@ const createSaleController = async (req, res) => {
   }
 };
 
+// const updateSaleByIdController = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     console.log(id);
+//     const sale = req.body;
+//     console.log(sale);
+//     const updateSale = await Sale.updateSaleByIdService(productId, quantity, id);
+//     return res.status(200).json(updateSale);
+//   } catch (error) {
+//     return res.status(404).json({ message: error.message });
+//   }
+// };
+
 const deleteSaleController = async (req, res) => {
   try {
     const { id } = req.params;
@@ -47,4 +60,5 @@ module.exports = {
   getAllSaleControllers,
   getByIdSaleController,
   deleteSaleController,
+  updateSaleByIdController,
 };

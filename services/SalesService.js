@@ -26,6 +26,12 @@ const createSalesServices = async (array) => {
   return newObj;
 };
 
+// const updateSaleByIdService = async (productId, quantity, id) => {
+//   const updateSale = await Sale.updateSaleByIdModel(productId, quantity, id);
+//   console.log(updateSale);
+//   return updateSale;
+// };
+
 const deleteSaleService = async (id) => {
   const deleteSale = await Sale.deleteSaleModel(id);
   if (deleteSale.affectedRows === 0) {
@@ -38,4 +44,5 @@ module.exports = {
   createSalesServices,
   getByIdSaleService,
   deleteSaleService,
+  updateSaleByIdService,
 };
