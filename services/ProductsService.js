@@ -23,9 +23,17 @@ const updateProductService = async (id, name) => {
   return updateProduct;
 };
 
+const deleteProductService = async (id) => {
+  const deleteProduct = await Product.deleteProductModel(id);
+  if (deleteProduct.affectedRows === 0) {
+    throw new Error('Product not found');
+  }
+};
+
 module.exports = {
   getAllProductsService,
   getByIdProductService,
   createProductService,
   updateProductService,
+  deleteProductService,
 };
