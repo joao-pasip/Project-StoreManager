@@ -15,8 +15,17 @@ const createProductService = async (name) => {
   return product;
 };
 
+const updateProductService = async (id, name) => {
+  const updateProduct = await Product.updateProductModel(id, name);
+  if (updateProduct.affectedRows === 0) {
+    throw new Error('Product not found');
+  }
+  return updateProduct;
+};
+
 module.exports = {
   getAllProductsService,
   getByIdProductService,
   createProductService,
+  updateProductService,
 };

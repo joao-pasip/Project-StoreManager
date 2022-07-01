@@ -11,6 +11,7 @@ const router = Router();
 router.get('/products', Product.getAllProductsController);
 router.get('/products/:id', Product.getByIdProductController);
 router.post('/products', productNameValidation, Product.createProductController);
+router.put('/products/:id', productNameValidation, Product.updateProductController);
 router.post('/sales', saleValidation, Sale.createSaleController);
 router.get('/sales', Sale.getAllSaleControllers);
 router.get('/sales/:id', Sale.getByIdSaleController);

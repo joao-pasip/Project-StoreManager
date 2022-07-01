@@ -30,8 +30,24 @@ const createProductController = async (req, res) => {
   }
 };
 
+const updateProductController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
+    const newObj = {
+      id,
+      name,
+    };
+    await Product.updateProductService(id, name);
+    return res.status(200).json(newObj);
+  } catch (error) {
+    return res.status(404).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getAllProductsController,
   getByIdProductController,
   createProductController,
+  updateProductController,
 };
