@@ -5,7 +5,7 @@ const sinon = require('sinon');
 const service = require('../../../services/ProductsService');
 const model = require('../../../models/ProductsModel');
 
-describe('Testa o service create', () => {
+describe('Testa o service create', async () => {
   const mock = 'Pasip';
 
   before(() => {

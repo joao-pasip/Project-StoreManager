@@ -17,7 +17,7 @@ describe('Testa model:ProductsModel - getAllProducts', async () => {
   });
 
   it('Se o retorno é "Pasip"', async () => {
-    const result = await model.getAllProductsModel()
+    const result = await model.getAllProductsModel();
     expect(result).to.be.equal(mock[0])
   })
 })

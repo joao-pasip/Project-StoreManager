@@ -5,7 +5,7 @@ const model = require('../../../models/ProductsModel')
 
 const connection = require('../../../helpers/connection');
 
-describe('Testa model:ProductsModel - getByIdProduct', () => {
+describe('Testa model:ProductsModel - getByIdProduct', async () => {
   const mock = ['Pasip'];
 
   before(() => {
