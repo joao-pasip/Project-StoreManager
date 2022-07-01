@@ -1,9 +1,41 @@
 const connection = require('../helpers/connection');
 
+const serialize = (joinTable) => {
+  const objCamelCase = {
+    saleId: joinTable.sale_id,
+    productId: joinTable.product_id,
+    quantity: joinTable.quantity,
+    date: joinTable.date,
+  };
+
+  return objCamelCase;
+};
+
+const serializeById = (joinTable) => {
+  const objCamelCase = {
+    productId: joinTable.product_id,
+    quantity: joinTable.quantity,
+    date: joinTable.date,
+  };
+
+  return objCamelCase;
+};
+
 const getAllSaleModel = async () => {
-  const query = 'SELECT * FROM StoreManager.sales;';
+  const query = 'SELECT SALES_PRODUCTS.sale_id, SALES_PRODUCTS.product_id,'
+    + 'SALES_PRODUCTS.quantity, SALES.`date` FROM StoreManager.sales_products'
+    + ' AS SALES_PRODUCTS JOIN StoreManager.sales AS SALES ON SALES_PRODUCTS.sale_id = SALES.id;';
   const [result] = await connection.execute(query);
-  return result;
+  return result.map(serialize);
+};
+
+const getByIdSaleModel = async (id) => {
+  const query = 'SELECT SALES_PRODUCTS.sale_id, SALES_PRODUCTS.product_id,'
+    + 'SALES_PRODUCTS.quantity, SALES.`date` FROM StoreManager.sales_products'
+    + ' AS SALES_PRODUCTS JOIN StoreManager.sales AS SALES ON SALES_PRODUCTS.sale_id = SALES.id'
+    + ' WHERE SALES_PRODUCTS.sale_id = ?;';
+  const [result] = await connection.execute(query, [id]);
+  return result.map(serializeById);
 };
 
 const createSaleModel = async () => {
@@ -15,4 +47,5 @@ const createSaleModel = async () => {
 module.exports = {
   createSaleModel,
   getAllSaleModel,
+  getByIdSaleModel,
 };

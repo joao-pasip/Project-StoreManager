@@ -6,6 +6,14 @@ const getAllSalesServices = async () => {
   return salesAll;
 };
 
+const getByIdSaleService = async (id) => {
+  const saleById = await Sale.getByIdSaleModel(id);
+  if (!saleById.length) {
+    throw new Error('Sale not found');
+  }
+  return saleById;
+};
+
 const createSalesServices = async (array) => {
   await SaleProduct.verifyIfProductsExist(array);
   const saleId = await Sale.createSaleModel();
@@ -21,4 +29,5 @@ const createSalesServices = async (array) => {
 module.exports = {
   getAllSalesServices,
   createSalesServices,
+  getByIdSaleService,
 };
