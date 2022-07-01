@@ -26,8 +26,16 @@ const createSalesServices = async (array) => {
   return newObj;
 };
 
+const deleteSaleService = async (id) => {
+  const deleteSale = await Sale.deleteSaleModel(id);
+  if (deleteSale.affectedRows === 0) {
+    throw new Error('Sale not found');
+  }
+};
+
 module.exports = {
   getAllSalesServices,
   createSalesServices,
   getByIdSaleService,
+  deleteSaleService,
 };
