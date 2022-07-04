@@ -26,11 +26,16 @@ const createSalesServices = async (array) => {
   return newObj;
 };
 
-// const updateSaleByIdService = async (productId, quantity, id) => {
-//   const updateSale = await Sale.updateSaleByIdModel(productId, quantity, id);
-//   console.log(updateSale);
-//   return updateSale;
-// };
+const updateSaleByIdService = async (arraySales, id) => {
+  await SaleProduct.verifyIfProductsExist(arraySales);
+  await Sale.verifyIfSaleExist(id);
+  await Sale.updateSaleByIdModel(arraySales, id);
+  const newObj = {
+    saleId: id,
+    itemsUpdated: arraySales,
+  };
+  return newObj;
+};
 
 const deleteSaleService = async (id) => {
   const deleteSale = await Sale.deleteSaleModel(id);

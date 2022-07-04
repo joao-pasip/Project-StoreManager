@@ -21,15 +21,15 @@ const serializeById = (joinTable) => {
   return objCamelCase;
 };
 
-const serializeUptadeById = (joinTable) => {
-  const objCamelCase = {
-    saleId: joinTable.sale_id,
-    productId: joinTable.product_id,
-    quantity: joinTable.quantity,
-  };
+// const serializeUptadeById = (joinTable) => {
+//   const objCamelCase = {
+//     saleId: joinTable.sale_id,
+//     productId: joinTable.product_id,
+//     quantity: joinTable.quantity,
+//   };
 
-  return objCamelCase;
-};
+//   return objCamelCase;
+// };
 
 const getAllSaleModel = async () => {
   const query = 'SELECT SALES_PRODUCTS.sale_id, SALES_PRODUCTS.product_id,'
@@ -54,12 +54,23 @@ const createSaleModel = async () => {
   return result.insertId;
 };
 
-// const updateSaleByIdModel = async (productId, quantity, id) => {
-//   const query = 'UPDATE StoreManager.sales_products'
-//     + ' SET product_id = ?, quantity = ? WHERE sale_id = ?';
-//   const [result] = connection.execute(query, [productId, quantity, id]);
-//   return result.map(serializeUptadeById);
-// };
+const verifyIfSaleExist = async (id) => {
+  const query = 'SELECT * FROM StoreManager.sales WHERE id = ?';
+  const [result] = await connection.execute(query, [id]);
+  const saleIdExist = result.some((element) => element.id === Number(id));
+  if (!saleIdExist) {
+    throw new Error('Sale not found');
+  }
+};
+
+const updateSaleByIdModel = async (arraySales, id) => {
+  const query = 'UPDATE StoreManager.sales_products'
+    + ' SET quantity = ? WHERE product_id = ? and sale_id = ?';
+  Promise.all(arraySales.map(async (element) => {
+    await connection
+      .execute(query, [element.quantity, element.productId, id]);
+  }));
+};
 
 const deleteSaleModel = async (id) => {
   const query = 'DELETE FROM StoreManager.sales WHERE id = ?';
@@ -72,5 +83,6 @@ module.exports = {
   getAllSaleModel,
   getByIdSaleModel,
   deleteSaleModel,
+  verifyIfSaleExist,
   updateSaleByIdModel,
 };

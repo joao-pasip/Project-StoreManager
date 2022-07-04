@@ -20,7 +20,7 @@ const verifyIfProductsExist = async (itemsSold) => {
   const verifyProduct = 'SELECT * FROM StoreManager.products WHERE id = ?;';
   const arrayBoolean = await Promise.all(itemsSold.map(async (sale) => {
     const [result] = await connection.execute(verifyProduct, [sale.productId]);
-    return result.length < 1;
+    return result.length <= 0;
   }));
 
   const testeThrow = arrayBoolean.some((element) => element);

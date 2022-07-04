@@ -32,18 +32,17 @@ const createSaleController = async (req, res) => {
   }
 };
 
-// const updateSaleByIdController = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     console.log(id);
-//     const sale = req.body;
-//     console.log(sale);
-//     const updateSale = await Sale.updateSaleByIdService(productId, quantity, id);
-//     return res.status(200).json(updateSale);
-//   } catch (error) {
-//     return res.status(404).json({ message: error.message });
-//   }
-// };
+const updateSaleByIdController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const saleArray = req.body;
+    const updateSale = await Sale.updateSaleByIdService(saleArray, id);
+    return res.status(200).json(updateSale);
+  } catch (error) {
+    // console.log(error.message);
+    return res.status(404).json({ message: error.message });
+  }
+};
 
 const deleteSaleController = async (req, res) => {
   try {
