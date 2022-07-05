@@ -8,6 +8,7 @@ const SaleProduct = require('../controllers/SalesProductsController');
 
 const router = Router();
 
+router.get('/products/search', Product.getQueryNameProductController);
 router.get('/products', Product.getAllProductsController);
 router.get('/products/:id', Product.getByIdProductController);
 router.post('/products', productNameValidation, Product.createProductController);

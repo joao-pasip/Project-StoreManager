@@ -20,6 +20,16 @@ const getByIdProductController = async (req, res) => {
   }
 };
 
+const getQueryNameProductController = async (req, res) => {
+  try {
+    const name = req.query.q;
+    const product = await Product.getQueryNameProductService(name);
+    return res.status(200).json(product);
+  } catch (error) {
+    return res.status(404).json({ message: error.message });
+  }
+};
+
 const createProductController = async (req, res) => {
   try {
     const { name } = req.body;
@@ -61,4 +71,5 @@ module.exports = {
   createProductController,
   updateProductController,
   deleteProductController,
+  getQueryNameProductController,
 };

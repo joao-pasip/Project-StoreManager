@@ -10,6 +10,14 @@ const getByIdProductService = async (id) => {
   return product[0];
 };
 
+const getQueryNameProductService = async (name) => {
+  const products = await Product.getByQueryNameProductModel(name);
+  if (products.length === 0) {
+    throw new Error('Product not found');
+  }
+  return products;
+};
+
 const createProductService = async (name) => {
   const product = await Product.createProductModel(name);
   return product;
@@ -36,4 +44,5 @@ module.exports = {
   createProductService,
   updateProductService,
   deleteProductService,
+  getQueryNameProductService,
 };

@@ -39,7 +39,6 @@ const updateSaleByIdController = async (req, res) => {
     const updateSale = await Sale.updateSaleByIdService(saleArray, id);
     return res.status(200).json(updateSale);
   } catch (error) {
-    // console.log(error.message);
     return res.status(404).json({ message: error.message });
   }
 };
