@@ -24,6 +24,7 @@ const getQueryNameProductController = async (req, res) => {
   try {
     const name = req.query.q;
     const product = await Product.getQueryNameProductService(name);
+    if (!product) throw new Error();
     return res.status(200).json(product);
   } catch (error) {
     return res.status(404).json({ message: error.message });

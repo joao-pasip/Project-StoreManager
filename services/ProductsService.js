@@ -13,7 +13,7 @@ const getByIdProductService = async (id) => {
 const getQueryNameProductService = async (name) => {
   const products = await Product.getByQueryNameProductModel(name);
   if (products.length === 0) {
-    throw new Error('Product not found');
+    return false;
   }
   return products;
 };
