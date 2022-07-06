@@ -4,7 +4,7 @@ const { saleValidation } = require('../middlewares/saleValidation');
 
 const Product = require('../controllers/ProductsController');
 const Sale = require('../controllers/SalesControllers');
-const SaleProduct = require('../controllers/SalesProductsController');
+// const SaleProduct = require('../controllers/SalesProductsController');
 
 const router = Router();
 
@@ -21,7 +21,7 @@ router.get('/sales/:id', Sale.getByIdSaleController);
 router.put('/sales/:id', saleValidation, Sale.updateSaleByIdController);
 router.delete('/sales/:id', Sale.deleteSaleController);
 
-router.get('/salesp', SaleProduct.getAllSalesProductsController);
+// router.get('/salesp', SaleProduct.getAllSalesProductsController);
 
 module.exports = {
   router,

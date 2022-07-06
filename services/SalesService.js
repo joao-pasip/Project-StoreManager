@@ -3,6 +3,7 @@ const SaleProduct = require('../models/Sales_ProductsModel');
 
 const getAllSalesServices = async () => {
   const salesAll = await Sale.getAllSaleModel();
+  console.log(salesAll);
   return salesAll;
 };
 
@@ -21,7 +22,6 @@ const createSalesServices = async (array) => {
     id: saleId,
     itemsSold: array,
   };
-  console.log(newObj);
   await SaleProduct.createSaleProductModel(newObj);
   return newObj;
 };

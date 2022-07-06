@@ -10,11 +10,11 @@ const connection = require('../helpers/connection');
 //   return objCamelCase;
 // };
 
-const getAllSalesProductsModel = async () => {
-  const query = 'SELECT * FROM StoreManager.sales_products;';
-  const [result] = await connection.execute(query);
-  return result;
-};
+// const getAllSalesProductsModel = async () => {
+//   const query = 'SELECT * FROM StoreManager.sales_products;';
+//   const [result] = await connection.execute(query);
+//   return result;
+// };
 
 const verifyIfProductsExist = async (itemsSold) => {
   const verifyProduct = 'SELECT * FROM StoreManager.products WHERE id = ?;';
@@ -41,6 +41,6 @@ const createSaleProductModel = async ({ id, itemsSold }) => {
 
 module.exports = {
   createSaleProductModel,
-  getAllSalesProductsModel,
+  // getAllSalesProductsModel,
   verifyIfProductsExist,
 };
