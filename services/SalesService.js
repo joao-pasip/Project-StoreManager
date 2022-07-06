@@ -1,9 +1,9 @@
 const Sale = require('../models/SalesModel');
-const SaleProduct = require('../models/Sales_ProductsModel');
+// const SaleProduct = require('../models/Sales_ProductsModel');
+const SaleProduct = require('../helpers/verifyDB');
 
 const getAllSalesServices = async () => {
   const salesAll = await Sale.getAllSaleModel();
-  console.log(salesAll);
   return salesAll;
 };
 
